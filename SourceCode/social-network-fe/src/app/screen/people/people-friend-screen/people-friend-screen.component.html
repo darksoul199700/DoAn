@@ -1,0 +1,39 @@
+<div id="people-detail-container">
+    <section id="sticky-navbar">
+        <app-navbar></app-navbar>
+    </section>
+    <section id="people-detai" *ngIf="usersDetail">
+        <div class="header-detail">
+            <div class="present">
+                <div class="avatar-present">
+                    <img [src]="usersDetail.usersPhoto.photo_url">
+                </div>
+               
+                <p>{{usersDetail.username}}</p>
+                
+            </div>
+            <div class="other-btn">
+                <button (click)="navigateMessage()" class="btn-message">
+                    Message
+                </button>
+            </div>
+        </div>
+        <div class="information-detail">
+            <div class="line-1">
+                <p><span>Họ tên</span> : <span>{{usersDetail.usersDetail.surname}} {{usersDetail.usersDetail.truename}}</span></p>
+                <p><span>Địa chỉ</span> : <span>{{usersDetail.usersDetail.address}}</span></p>
+            </div>
+            <div class="line-2">
+                <p *ngIf="usersDetail.usersDetail.gender == true; else Femail"><span>Giới tính</span> : <span>Nam</span></p>
+                <ng-template #Femail>
+                    <p><span>Giới tính</span> : <span>Nữ</span></p>
+                </ng-template>
+                <p><span>Số điện thoại</span> : <span>{{usersDetail.usersDetail.phonenumber}}</span></p>
+            </div>
+        </div>
+
+        <div class="list-post">
+            <app-post-content *ngFor="let posts of post" [post]="posts" [user]="usersDetail"></app-post-content>
+        </div>
+    </section>
+</div>

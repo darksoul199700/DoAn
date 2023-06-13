@@ -1,0 +1,50 @@
+<div class="people-suggess-container">
+    <section id="sticky-navbar">
+        <app-navbar></app-navbar>
+    </section>
+    <section id="list-suggess">
+        <div id="list-suggess-cover">
+            <div class="list">
+                <div class="list-card" *ngFor="let users of array; index as i; first as isfirst">
+                    <div class="card-left">
+                        <div class="card-avatar">
+                            <ng-container *ngIf="users.usersPhoto; else elseTemplate">
+                                <img [src]="baseApiUrl + '/' + users.usersPhoto.photo_url">
+                            </ng-container>
+                            <ng-template #elseTemplate>
+                            </ng-template>
+                        </div>
+                        <div class="card-info" *ngIf="users.usersDetail; else noDetail">
+                            <button (click)="peopleDetail(users.id)">
+                                <p class="usersname-info">{{users.usersDetail.username}}</p>
+                            </button>
+                            <p class="fullname-info">{{users.usersDetail.surname}} {{users.usersDetail.truename}}</p>
+                        </div>
+
+                        <ng-template #noDetail>
+                            <div class="card-info">
+                                <button (click)="peopleDetail(users.id)">
+                                    <p class="usersname-info">{{users.username}}</p>
+                                </button>
+                                <p class="fullname-info">{{users.fullname}}</p>
+                            </div>
+                        </ng-template>
+                    </div>
+
+                    <div class="card-right" *ngIf="users.usersHasFollow && users.usersHasFollow.length > 0;else caseElse">
+                        <button (click)="followOtherUser(users.id, $event)" class="active">Đã theo dõi</button>
+                    </div>
+                    
+                    <ng-template #caseElse>
+                        <div class="card-right">
+                            <button (click)="followOtherUser(users.id, $event)">Theo dõi</button>
+                        </div>
+                         
+                    </ng-template>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

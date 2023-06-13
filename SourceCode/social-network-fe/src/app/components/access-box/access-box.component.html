@@ -1,0 +1,86 @@
+<section id="access-box-cover">
+  <div id="access-box-container">
+    <div class="access-box-content sign-in active">
+      <div class="access-box-img"><img src="../../../assets/images/login-background.jpg" alt="login-bg"></div>
+      <div class="access-box-inp ">
+          <form [formGroup]="registForm" (ngSubmit) = "submitReigsform()">
+            <h2>Tạo tài khoản</h2>
+            <div class="form-group">
+              <input type="text" name="username" formControlName="username" placeholder="Tên đăng nhập">
+              <div *ngIf="submitted">
+                <mat-icon matTooltipPosition="right" *ngIf="!validateRequiredRegis('username'); else ElUsername" class="icon-check">done</mat-icon>
+                <ng-template #ElUsername>
+                    <mat-icon matTooltipPosition="right" [matTooltip]="getValidateRegisErrorMessage('username')" class="icon-error">close</mat-icon>
+                </ng-template>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" name="email" formControlName="email" placeholder="Email">
+              <div *ngIf="submitted">
+                <mat-icon matTooltipPosition="right" *ngIf="!validateRequiredRegis('email'); else ElEmail" class="icon-check">done</mat-icon>
+                <ng-template #ElEmail>
+                    <mat-icon matTooltipPosition="right" [matTooltip]="getValidateRegisErrorMessage('email')" class="icon-error">close</mat-icon>
+                </ng-template>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" formControlName="password" placeholder="Mật khẩu">
+              <div *ngIf="submitted">
+                <mat-icon matTooltipPosition="right" *ngIf="!validateRequiredRegis('password'); else ElPassword" class="icon-check">done</mat-icon>
+                <ng-template #ElPassword>
+                    <mat-icon matTooltipPosition="right" [matTooltip]="getValidateRegisErrorMessage('password')" class="icon-error">close</mat-icon>
+                </ng-template>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="password" name="re-password" formControlName="repassword" placeholder="Nhập lại mật khẩu">
+              <div *ngIf="submitted">
+                <mat-icon matTooltipPosition="right" *ngIf="!validateRequiredRegis('repassword'); else ElRePassword" class="icon-check">done</mat-icon>
+                <ng-template #ElRePassword>
+                    <mat-icon matTooltipPosition="right" [matTooltip]="getValidateRegisErrorMessage('repassword')" class="icon-error">close</mat-icon>
+                </ng-template>
+              </div>
+            </div>
+            <input type="submit">
+            <p class="signup">Bạn đã có tài khoản? <a href="#" (click)="toggleForm()"> Đăng nhập.</a></p>
+          </form>
+      </div>
+    </div>
+    <div class="access-box-content sign-up">
+      <div class="access-box-inp">
+          <form [formGroup]="loginForm" (ngSubmit) = "submitLoginForm()">
+              <h2>Đăng nhập</h2>
+              <div class="form-group">
+                <input type="text" name="username" [(ngModel)]="username" formControlName="username" placeholder="Tên đăng nhập">
+                <div *ngIf="submitted">
+                  <mat-icon matTooltipPosition="right" *ngIf="!validateRequired('username'); else ElUsernameL" class="icon-check">done</mat-icon>
+                  <ng-template #ElUsernameL>
+                      <mat-icon matTooltipPosition="right" [matTooltip]="getValidateLoginErrorMessage('username')" class="icon-error">close</mat-icon>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="password" name="password" formControlName="password" placeholder="Mật khẩu">
+                <div *ngIf="submitted">
+                  <mat-icon matTooltipPosition="right" *ngIf="!validateRequired('password'); else ElPasswordL" class="icon-check">done</mat-icon>
+                  <ng-template #ElPasswordL>
+                      <mat-icon matTooltipPosition="right" [matTooltip]="getValidateLoginErrorMessage('password')" class="icon-error">close</mat-icon>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="captcha">
+                <ngx-recaptcha2 #captchaElem
+                  siteKey="6Ld57YomAAAAAELfXE1sIgv2JyhcQW80SU4IX6jZ"
+                  (success)="handleSuccess($event)"
+                  data-size="compact"
+                  formControlName="recaptcha">
+                </ngx-recaptcha2>
+              </div>
+              <input type="submit">
+              <p class="signup">Bạn chưa có tài khoản? <a href="#" (click)="toggleForm();">Đăng ký.</a></p>
+          </form>
+      </div>
+      <div class="access-box-img"><img src="../../../assets/images/register-background.jpg" alt="login-bg"></div>
+    </div>
+  </div>
+</section>

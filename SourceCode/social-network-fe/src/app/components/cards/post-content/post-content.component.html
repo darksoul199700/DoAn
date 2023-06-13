@@ -1,0 +1,65 @@
+<!-- <div class="post-cover"> -->
+  <div class="post-cards">
+    <div class="post-cards-header">
+      <div class="cards-header-content">
+        <div class="avatar-users">
+          <img [src]="baseApiUrl + '/' + post.users.usersPhoto?.photo_url">
+        </div>
+        <div class="info-post">
+          <p>{{post.users.usersDetail.username}}</p>
+          <p>{{howlong(post.create_at)}}</p>
+        </div>
+      </div>
+      <div class="cards-header-btn">
+        <button (click)="postDetail(post.id)">
+          <img src="../../../../assets/icons/access.png">
+        </button>
+      </div>
+    </div>
+    <div class="post-cards-body">
+      <div class="caption">{{post.caption}}</div>
+      <div class="photo">
+        <ng-image-slider *ngIf="imageObject.length > 0" [images]="imageObject"></ng-image-slider>
+      </div>
+      <div class="action">
+        <div class="action-left">
+          <button class="btn-like" *ngIf="is_Like; else elseButton" (click)="toggle(post.id)">
+            <img src="../../../../assets/icons/heart-red.png">
+          </button>
+          <ng-template #elseButton>
+            <button class="btn-like" (click)="toggle(post.id)">
+              <img src="../../../../assets/icons/heart-unactive.png">
+            </button>
+          </ng-template>
+          <button class="btn-comment">
+            <img src="../../../../assets/icons/comment-unactive.png">
+          </button>
+        </div>
+        <div>
+          {{post.countLike}} Like
+        </div>
+      </div>
+      <div [ngClass]="['list-comment', postContentClass]" *ngIf="oldestComment.length > 0">
+        <div class="old-comment">
+          <div class="comment-item old" *ngFor="let comment of oldestComment; index as i">
+            <p><span style="font-weight: bold;">{{comment.users.usersDetail.username}}</span><span>: {{comment.content_comment}}</span></p>
+          </div>
+        </div>
+        <div class="new-comment hide">
+          <div class="comment-item old" *ngFor="let comment of newestComment; index as i">
+            <p><span style="font-weight: bold;">{{comment.users.usersDetail.username}}</span><span>: {{comment.content_comment}}</span></p>
+          </div>
+        </div>
+        <button *ngIf="newestComment.length > 0" [ngClass]="['show-more', postContentClass]" (click)="showMoreComment($event)">{{isShowMore ? 'Show less comment' : 'Show more comment'}}</button>
+      </div>
+      <div class="comment">
+        <div class="comment-zone">
+          <div contenteditable="true" (keydown)="changevalue($event)">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+

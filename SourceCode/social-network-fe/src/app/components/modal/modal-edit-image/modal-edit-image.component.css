@@ -1,0 +1,4 @@
+.arrange-button {
+    justify-content: space-between;
+    display: flex;
+}

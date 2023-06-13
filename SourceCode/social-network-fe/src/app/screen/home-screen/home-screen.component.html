@@ -1,0 +1,30 @@
+<div class="home-container">
+    <section id="sticky-navbar">
+      <app-navbar [notification]="notifications" [count]="unReadNoti"></app-navbar>
+    </section>
+    <div id="post-item-cover">
+      <div id="post-left"></div>
+      <div id="post-center">
+        <section id="post-zone">
+          <div class="post-cover">
+            <div id="what-you-think">
+              <div id="wyt-avatar">
+                <img *ngIf="avatar" [src]="avatar">
+              </div>
+              <div id="open-modal">
+                <input placeholder="Bạn đang nghỉ gì thế" (click) = "openDialog()">
+              </div>
+            </div>
+            <div id="post-option">
+      
+            </div>
+          </div>
+        </section>
+        <section id="post-section" *ngIf="post.length">
+          <app-post-content *ngFor="let posts of post, index as indexPost" [post]="posts" [user]="user" [index]="indexPost"></app-post-content>
+        </section>
+      </div>
+      <div id="post-right"></div>
+    </div>
+</div>
+

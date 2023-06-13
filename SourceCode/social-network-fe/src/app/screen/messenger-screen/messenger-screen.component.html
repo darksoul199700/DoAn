@@ -1,0 +1,58 @@
+<div id="messenger-container">
+    <section id="sticky-navbar">
+        <app-navbar></app-navbar>
+    </section>
+    <section id="messenger-box">
+        <div class="messenger-cover">
+            <div id="left-box">
+                <div id="owner-name">
+                    <h4>{{currentUserName}}</h4>
+                </div>
+                <div id="list-friend">
+                    <div class="friend-box" *ngFor="let item of testArray; index as i" (click)="joinToChatRoom(item.id, $event)">
+                        <div>
+                            <div>
+                                <img *ngIf="item.usersPhoto as photo" [src]="baseApiUrl + '/' + photo.photo_url">
+                            </div>
+                            <p *ngIf="item.usersDetail as detail; else notDetail">{{detail.username}}</p>
+                            <ng-template #notDetail>
+                                <p>{{item.username}}</p>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="right-box">
+                <div *ngIf="isInARoom==false; else notInRoom" id="out-of-room">
+                    <div>
+                        <img src="../../../assets/icons/email.png">
+                    </div>
+                    <p>Lựa chọn bạn bè để bắt đầu đoạn hội thoại</p>  
+                </div>
+                <ng-template #notInRoom>
+                    <div id="chat-list">
+                        <ng-container *ngFor="let message of listMessages">
+                            <div *ngIf="message.chatRoomMember.member.id == currentUser.users_id; else notUser" class="comment-box right">
+                                <span>
+                                    {{message.messages}}
+                                </span>
+                            </div>
+                            <ng-template #notUser>
+                                <div class="comment-box">
+                                    <span>
+                                        {{message.messages}}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                        
+                    </div>
+                    <div id="chat-box">
+                        <input type="text" placeholder="Write something..." [(ngModel)]="message" (keyup)="addChat($event)">
+                    </div>
+                </ng-template>
+                
+            </div>
+        </div>
+    </section>
+</div>

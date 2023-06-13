@@ -1,0 +1,14 @@
+app-access-box {
+  width: 100%;
+}
+
+.login-contain {
+  height: 100vh;
+  justify-content: center;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+
+

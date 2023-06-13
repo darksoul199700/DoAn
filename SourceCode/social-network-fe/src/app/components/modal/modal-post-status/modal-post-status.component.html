@@ -1,0 +1,56 @@
+<mat-dialog-content id="modal-post">
+  <div class="modal-cover">
+    <div class="modal-header">
+      <h2 class="modal-title" *ngIf="!isEditPost" mat-dialog-title>Tạo bài viết</h2>
+      <h2 class="modal-title" *ngIf="isEditPost" mat-dialog-title>Chỉnh sửa bài viết</h2>
+    </div>
+    <div class="modal-body">
+      <div id="your-self">
+        <div id="avatar-post">
+          <img *ngIf="avatar" [src]="avatar">
+        </div>
+        <div id="username-post">
+          <p>{{user.username}}</p>
+        </div>
+      </div>
+      <div id="input-wyt">
+        <mat-form-field>
+          <textarea name="wyt" id="wyt" mat-input rows="7" placeholder="Bạn đang nghỉ gì thế?" (change)="loadCaption()" [(ngModel)]="caption"></textarea>
+        </mat-form-field>
+      </div>
+      <div id="post-image">
+        
+        <mat-form-field>
+          <button (click)="uploadFile()" id="selectFile">
+            <p>Thêm vào bài viết</p>
+          </button>
+          <input type="file" (change)='uploadImage($event)' id="post-image-upload" hidden multiple accept="image/*">
+        </mat-form-field>
+
+      </div>
+      <div id="image_preview" >
+        <ng-container *ngIf="imagePostEdit.length > 0">
+          <div class="image-card edit" *ngFor="let eachpath of imagePostEdit; index as i ">
+            <img [src]="baseApiUrl + '/' + eachpath">
+            <button class="delete-img" (click)="removeImg(i)">
+              X
+            </button>
+          </div>
+        </ng-container>
+        <ng-container #Else>
+          <div class="image-card" *ngFor="let eachpath of imagePost; index as i ">
+            <img [src]="sanitizer.bypassSecurityTrustUrl(eachpath)">
+          </div>
+        </ng-container>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" mat-button [mat-dialog-close]="[data.path, data.caption, data.files]"  cdkFocusInitial>
+        <span *ngIf="!isEditPost">Tạo mới</span>
+        <span *ngIf="isEditPost">Chỉnh sửa</span>
+      </button>
+    </div>
+  </div>
+
+</mat-dialog-content>

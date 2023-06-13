@@ -1,0 +1,19 @@
+<div class="navbar-left">
+  <div class="navbar-left-content">
+    <div class="change-profile">
+      <button (click)="profileDetailClick()" [ngClass]="pageType == 'profile-detail' ? 'active' : 'unactive'">
+        <p>Chỉnh sửa trang cá nhân</p>
+      </button>
+    </div>
+    <div class="change-password">
+      <button (click)="changePasswordClick()" [ngClass]="pageType == 'change-password' ? 'active' : 'unactive'">
+        <p>Đổi mật khẩu</p>
+      </button>
+    </div>
+    <div class="logout">
+      <button class="unactive">
+        <p (click)="logout()">Đăng xuất</p>
+      </button>
+    </div>
+  </div>
+</div>

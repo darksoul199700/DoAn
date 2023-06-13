@@ -1,0 +1,243 @@
+nav {
+  position: fixed;
+  width: 100%;
+  min-height: 56px;
+  background-color: white;
+  display: flex;
+  top: 0px;
+  z-index: 1;
+  box-shadow: 1px 4px 9px 0px #00000020;
+}
+
+nav section {
+  position: relative;
+  display: flex;
+}
+
+h3 {
+  margin: 0px;
+}
+
+#logo {
+  width: 33.33%;
+  justify-content: center;
+  align-items: center;
+}
+
+#search-input {
+  width: 33.33%;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+#search-input form {
+  width: 50%;
+  position: relative;
+}
+
+#search-input form input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: whitesmoke;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+#optional {
+  width: 426px;
+  background-color: white;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#optional div {
+  display: block;
+}
+
+#optional div#optional-content {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  /* padding: 0px 100px; */
+}
+
+#optional div#home-sect button:hover
+{
+  background: tomato;
+}
+
+#optional div#home-sect button
+{
+  border-radius: 50px;
+  background: white;
+  padding: 5px;
+  position: relative;
+  border: none;
+  outline: none;
+}
+
+#optional div#home-sect button img
+{
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+#optional div#message-sect button:hover
+{
+  background: tomato;
+}
+
+#optional div#message-sect button
+{
+  border-radius: 50px;
+  background: white;
+  padding: 5px;
+  position: relative;
+  border: none;
+  outline: none;
+}
+
+#optional div#message-sect button img
+{
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+#optional div#explore-sect button
+{
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border: none;
+  outline: none;
+}
+
+#optional div#explore-sect button img
+{
+  background-color: white;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#optional div#favorite-sect button
+{
+  position: relative;
+  border: none;
+  outline: none;
+  padding: 5px;
+  background: white;
+  border-radius: 50px;
+}
+
+#optional div#favorite-sect button:hover
+{
+  background: tomato;
+}
+
+#optional div#favorite-sect button img
+{
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+#optional div#info-sect button
+{
+  position: relative;
+  border: none;
+  outline: none;
+  padding: 5px;
+  background: white;
+  border-radius: 50px;
+}
+
+#optional div#info-sect  button:hover
+{
+  background: tomato;
+}
+
+#optional div#info-sect button img
+{
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+#optional div#notification-sect button:hover
+{
+  background: tomato;
+}
+
+#optional div#notification-sect button
+{
+  background: white;
+  position: relative;
+  border: none;
+  outline: none;
+  padding: 5px;
+}
+
+#optional div#notification-sect > button {
+  border-radius: 50px;
+}
+
+#optional div#notification-sect button img
+{
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+#notification-number {
+  width: 20px; 
+  height: 20px; 
+  background: tomato;
+  position: absolute;
+  top: 10px;
+  border-radius: 20px;
+  right: 32px;
+  justify-content: center;
+  display: flex !important;
+  align-items: center;
+  font-size: 12px;
+  color: white;
+}
+#notification {
+  position: absolute;
+  width: 300px;
+  background: whitesmoke;
+  right: 0px;
+  filter: drop-shadow(2px 2px 4px #00000020);
+  border-radius: 8px;
+}
+
+#notification button {
+  width: 100% !important;
+  height: fit-content !important;
+}
+
+#notification button div.noti-item {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  align-items: center;
+  background: white;
+  display: flex;
+}
+
+#notification button div.unread {
+  background: whitesmoke;
+}
+
+#notification button div.noti-item:hover {
+  background: tomato
+}
+
+div.hide {
+  display: none;
+  visibility: hidden;
+}

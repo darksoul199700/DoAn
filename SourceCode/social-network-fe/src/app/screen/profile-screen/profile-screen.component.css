@@ -1,0 +1,171 @@
+.profile-container {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: whitesmoke;
+  position: relative;
+}
+
+section#content div.frame-box {
+  margin: 100px auto 0;
+  max-width: 935px;
+  width: 100%;
+  background: white;
+  height: 557px;
+  flex-direction: row;
+  display: flex;
+  filter: drop-shadow(1px 2px 4px #00000020);
+  border-radius: 8px
+}
+
+.form-layout{
+  position: relative;
+  width: 100%;
+}
+
+#form-details {
+  padding: 0px 0px;
+}
+
+.form-group {
+  display: flex;
+  margin: 30px 0px;
+}
+
+.form-group aside {
+  margin-right: 50px;
+  min-width: 150px;
+  text-align: right;
+  margin-top: 10px;
+}
+
+.form-group aside label {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.form-group > div {
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-group div input {
+  height: 35px;
+  width: 100%;
+  border: 1px solid #00000030;
+  border-radius: 3px;
+  outline: none;
+  padding: 0px 20px;
+}
+
+#profile-avatar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: -20px;
+}
+
+#profile-avatar div {
+  width: 100px;
+  height: 100px;
+  background: tomato;
+  border-radius: 50px;
+  position: relative;
+}
+
+#profile-avatar div img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+}
+
+#profile-avatar div button {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  left: 62px;
+  top: 79px;
+  background: cornflowerblue;
+  border: none;
+  outline: none;
+}
+
+#fullname {
+  width: 100%;
+  max-width: 400px;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+}
+
+#surname {
+  height: 35px;
+  border-radius: 3px;
+  max-width: 162px;
+  border: 1px solid #00000030;
+  outline: none;
+  padding: 0px 20px;
+}
+
+#truename {
+  margin-left: 10px;
+  height: 35px;
+  border-radius: 3px;
+  max-width: 162px;
+  border: 1px solid #00000030;
+  outline: none;
+  padding: 0px 20px;
+}
+
+#gender {
+  width: 30px;
+  border: 0.5px solid #00000030;
+  margin-right: 5px;
+}
+
+#btn-submit {
+  margin-left: 200px;
+  width: 100px;
+  height: 30px;
+  font-weight: bold;
+  color: white;
+  border: 0px;
+  outline: none;
+  background: tomato;
+  border-radius: 5px;
+}
+
+#gender-group {
+  display: flex;
+}
+
+#gender-group > div:first-child {
+  margin-right: 100px;
+}
+
+#gender-group div {
+  display: flex;
+  align-items: center;
+}
+
+#gender-group div label {
+  margin-bottom: 0px;
+}
+
+:host .icon-check {
+  color: green;
+}
+
+:host .icon-error {
+  color: red;
+}
+
+:host .form-item {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+

@@ -1,0 +1,67 @@
+<nav>
+  <section id="logo">
+    <h3>Instagram</h3>
+  </section>
+  <section id="search-input">
+    <form id="form-search">
+      <input placeholder="Tìm kiếm">
+    </form>
+  </section>
+  <section id="optional">
+    <div id="optional-content">
+      <div id="home-sect">
+        <button (click)="moveIndexScreen()">
+          <img alt="home-icon" src="../../../../assets/icons/home-unactive.png">
+        </button>
+      </div>
+      <div id="message-sect">
+        <button (click)="moveMessageScreen()">
+          <img alt="message-icon" src="../../../../assets/icons/message-unactive.png">
+        </button>
+      </div>
+      <!-- <div id="explore-sect">
+        <button>
+          <img alt="explore-icon" src="../../../../assets/icons/explore-unactive.png">
+        </button>
+      </div> -->
+      <div id="favorite-sect">
+        <button (click)="moveFollowScreen()">
+          <img alt="favorite-icon" src="../../../../assets/icons/heart-unactive.png">
+        </button>
+      </div>
+      <div id="info-sect">
+        <button (click)="moveProfileScreen()">
+          <img alt="info-icon" src="../../../../assets/icons/user-unactive.png">
+        </button>
+      </div>
+      <div id="notification-sect">
+        <button (click)="notificationOpen($event)">
+          <img alt="info-icon" src="../../../../assets/icons/notification_unactive.png">
+        </button>
+        <div *ngIf="count > 0" id="notification-number">
+          {{count}}
+        </div>
+        <div id="notification" class="hide">
+          <ng-container *ngFor="let item of notification">
+            <button (click)="readNotification(item.id, item.post.id)">
+              <div class="noti-item" *ngIf="item.is_read == true; else noRead">
+                <div>
+                  <span style="font-weight: bold">{{item.post.users.usersDetail.username}}</span> {{item.no_content}}
+                </div>
+              </div>
+          </button>
+            <ng-template #noRead>
+              <button (click)="readNotification(item.id, item.post.id)">
+                <div class="noti-item unread">
+                  <div>
+                    <span style="font-weight: bold">{{item.post.users.usersDetail.username}}</span> {{item.no_content}}
+                  </div>
+                </div>
+              </button>
+            </ng-template>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </section>
+</nav>

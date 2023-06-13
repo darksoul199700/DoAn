@@ -1,0 +1,158 @@
+<div class="profile-container">
+  <section id="sticky-navbar">
+    <app-navbar></app-navbar>
+  </section>
+  <section id="content">
+    <div class="frame-box">
+      <app-navbar-left (onTabChange)="onTabChange($event)"></app-navbar-left>
+      <div class="form-layout" *ngIf="isProfileDetailPage">
+        <div id="profile-avatar">
+          <div id="avatar-showing" (click)="uploadClick()">
+            <img *ngIf="testSrc" (click)="uploadClick()" [src]="testSrc">
+          </div>
+          <h4>{{username}}</h4>
+        </div>
+        
+        <form [formGroup]="formUserDetail" id="form-details" (ngSubmit)="submitForm()">
+          <div class="form-group">
+            <aside aria-label="Họ tên">
+              <label>Họ tên</label>
+            </aside>
+            <div id="fullname">
+              <div class="form-item column-2">
+                <input name="surname" placeholder="Họ và tên đệm" formControlName="surname" class="form-control" id="surname">
+                <div *ngIf="submitted">
+                  <mat-icon matTooltipPosition="right" *ngIf="!validateFormUserDetailRequired('surname'); else ElSurname" class="icon-check">done</mat-icon>
+                  <ng-template #ElSurname>
+                      <mat-icon matTooltipPosition="right" [matTooltip]="getValidateFormUserDetailErrorMessage('surname')" class="icon-error">close</mat-icon>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="form-item column-2">
+                <input name="truename" placeholder="Tên" formControlName="truename" class="form-control" id="truename">
+                <div *ngIf="submitted">
+                  <mat-icon matTooltipPosition="right" *ngIf="!validateFormUserDetailRequired('truename'); else ElTruename" class="icon-check">done</mat-icon>
+                  <ng-template #ElTruename>
+                      <mat-icon matTooltipPosition="right" [matTooltip]="getValidateFormUserDetailErrorMessage('truename')" class="icon-error">close</mat-icon>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <aside aria-label="Tên người dùng">
+              <label>Tên người dùng</label>
+            </aside>
+            <div class="form-item">
+              <input name="username"  placeholder="Tên người dùng" formControlName="username" class="form-control">
+              <div *ngIf="submitted">
+                <mat-icon matTooltipPosition="right" *ngIf="!validateFormUserDetailRequired('username'); else ElUsername" class="icon-check">done</mat-icon>
+                <ng-template #ElUsername>
+                    <mat-icon matTooltipPosition="right" [matTooltip]="getValidateFormUserDetailErrorMessage('username')" class="icon-error">close</mat-icon>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <aside aria-label="Giới tính">
+              <label>Giới tính</label>
+            </aside>
+            <div id="gender-group">
+              <div>
+                <input name="gender" id="gender" [value]="false" type="radio" formControlName="gender" class="form-control" checked>
+                <label>Nam</label>
+              </div>
+              <div>
+                <input name="gender" id="gender" [value]="true" type="radio" formControlName="gender" class="form-control">
+                <label>Nữ</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <aside aria-label="Địa chỉ">
+              <label>Địa chỉ</label>
+            </aside>
+            <div class="form-item">
+              <input name="address" placeholder="Địa chỉ" formControlName="address" class="form-control">
+              <div *ngIf="submitted">
+                <mat-icon matTooltipPosition="right" *ngIf="!validateFormUserDetailRequired('address'); else ElAddress" class="icon-check">done</mat-icon>
+                <ng-template #ElAddress>
+                    <mat-icon matTooltipPosition="right" [matTooltip]="getValidateFormUserDetailErrorMessage('address')" class="icon-error">close</mat-icon>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <aside aria-label="Số điện thoại">
+              <label>Số điện thoại</label>
+            </aside>
+            <div class="form-item">
+              <input name="phonenumber" placeholder="Số điện thoại" formControlName="phonenumber" class="form-control">
+              <div *ngIf="submitted">
+                <mat-icon matTooltipPosition="right" *ngIf="!validateFormUserDetailRequired('phonenumber'); else ElPhonenumber" class="icon-check">done</mat-icon>
+                <ng-template #ElPhonenumber>
+                    <mat-icon matTooltipPosition="right" [matTooltip]="getValidateFormUserDetailErrorMessage('phonenumber')" class="icon-error">close</mat-icon>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button id="btn-submit">Gửi</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-layout" *ngIf="!isProfileDetailPage">
+        
+        <form [formGroup]="formChangePassword" id="formChangePassword" (ngSubmit)="submitChangePassword()">
+          <div class="form-group">
+            <aside aria-label="Mật khẩu hiện tại">
+              <label>Mật khẩu hiện tại</label>
+            </aside>
+            <div class="form-item">
+              <input name="currentPassword" type="password" formControlName="currentPassword" class="form-control">
+              <div *ngIf="submitted">
+                <mat-icon matTooltipPosition="right" *ngIf="!validateFormChangePasswordRequired('currentPassword') && isCurrentPasswordCorrect; else ElCurrentPassword" class="icon-check">done</mat-icon>
+                <ng-template #ElCurrentPassword>
+                  <mat-icon matTooltipPosition="right" *ngIf="!formChangePassword.invalid && !isCurrentPasswordCorrect" matTooltip="Mật khẩu hiện tại không chính xác" class="icon-error">close</mat-icon>
+                  <mat-icon matTooltipPosition="right" *ngIf="!!getValidateFormChangePasswordErrorMessage('currentPassword')" [matTooltip]="getValidateFormChangePasswordErrorMessage('currentPassword')" class="icon-error">close</mat-icon>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <aside aria-label="Mật khẩu mới">
+              <label>Mật khẩu mới</label>
+            </aside>
+            <div class="form-item">
+              <input name="newPassword" type="password" formControlName="newPassword" class="form-control">
+              <div *ngIf="submitted">
+                <mat-icon matTooltipPosition="right" *ngIf="!validateFormChangePasswordRequired('newPassword'); else ElNewPassword" class="icon-check">done</mat-icon>
+                <ng-template #ElNewPassword>
+                    <mat-icon matTooltipPosition="right" [matTooltip]="getValidateFormChangePasswordErrorMessage('newPassword')" class="icon-error">close</mat-icon>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <aside aria-label="Nhập lại mật khẩu">
+              <label>Nhập lại mật khẩu</label>
+            </aside>
+            <div class="form-item">
+              <input name="retypeNewPassword" type="password" formControlName="retypeNewPassword" class="form-control">
+              <div *ngIf="submitted">
+                <mat-icon matTooltipPosition="right" *ngIf="!validateFormChangePasswordRequired('retypeNewPassword'); else ElRetype" class="icon-check">done</mat-icon>
+                <ng-template #ElRetype>
+                    <mat-icon matTooltipPosition="right" [matTooltip]="getValidateFormChangePasswordErrorMessage('retypeNewPassword')" class="icon-error">close</mat-icon>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button id="btn-submit">Gửi</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
