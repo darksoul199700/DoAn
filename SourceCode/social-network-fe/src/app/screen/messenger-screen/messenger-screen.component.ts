@@ -59,10 +59,12 @@ export class MessengerScreenComponent implements OnInit {
       
     })
 
-    this.usersService.usersDetail().subscribe((user) => {
-      console.log(user)
-      this.currentUser = user
-      this.currentUserName = user.username
+    this.usersService.usersDetail().subscribe((response) => {
+      if (response.code === 200) {
+        const user = response.data;
+        this.currentUser = user
+        this.currentUserName = user.username
+      }
     })
   }
 

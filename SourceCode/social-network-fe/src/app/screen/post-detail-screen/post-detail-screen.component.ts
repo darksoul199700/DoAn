@@ -65,8 +65,11 @@ export class PostDetailScreenComponent implements OnInit {
       this.id = params.id;
     })
 
-    this.usersService.usersDetail().subscribe(user => {
-      this.currentUser = user
+    this.usersService.usersDetail().subscribe(response => {
+      if (response.code === 200) {
+        this.currentUser = response.data
+      }
+      
     })
 
     this.usersService.getUserPhotoUrl().subscribe(

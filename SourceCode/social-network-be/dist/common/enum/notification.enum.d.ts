@@ -1,0 +1,4 @@
+export declare enum NOTIFICATION_ENUM {
+    POST_CONTENT = "POST_CONTENT",
+    COMMENT = "COMMENT"
+}

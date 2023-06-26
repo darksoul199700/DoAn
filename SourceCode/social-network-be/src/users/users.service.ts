@@ -59,7 +59,7 @@ export class UsersService {
     async loginUser (loginUserDto: LoginUserDto) {
         const {username, password} = loginUserDto
 
-        const checkLogin = await this.userRepository.findOne({username})
+        const checkLogin = await this.userRepository.findOne({where: {username}})
         if(checkLogin) {
             const isMatchingPassword = await bcrypt.compare(password, checkLogin.password)
             if(isMatchingPassword === true)
@@ -99,7 +99,7 @@ export class UsersService {
         ])
         .getMany()
 
-        const checkHasFollow = await getRepository(UsersFollow).find({where: {users: users}})
+        const checkHasFollow = await getRepository(UsersFollow).find({where: {usersId: users.id}})
         
         query.map(value => {
             checkHasFollow.map(values => {

@@ -49,7 +49,8 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect 
     @SubscribeMessage('sendMessageToServer')
     async handleMessage(client: Socket, message: {sender: string, sender_id: number ,room: string, message: string, create_at: Date}) {
       Logger.log(message)
-      await this.messageService.saveMessage(message.message, message.create_at,message.sender_id, parseInt(message.room))
+      const result = await this.messageService.saveMessage(message.message, message.create_at,message.sender_id, parseInt(message.room))
+      Logger.log(result)
       client.broadcast.to(message.room).emit('broadcassMessageToClient', message)
       // this.server.to(message.room).emit('chat-to-client', message.message)
     }

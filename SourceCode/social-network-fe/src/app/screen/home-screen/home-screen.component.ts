@@ -48,9 +48,9 @@ export class HomeScreenComponent implements OnInit {
     else {
       this.userService.usersDetail().subscribe(
         (result) => {
-          if(result)
+          if(result.code === 200)
           {
-            this.user = result
+            this.user = result.data
           }
         }
       )
